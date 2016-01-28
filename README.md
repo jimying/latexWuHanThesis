@@ -10,17 +10,15 @@
 
 ----------
 1. 测试的环境：
-centos7 + texlive2009 +gbk2uni
+    centos7 + texlive2009 +gbk2uni
 
-1) gbk2uni：https://github.com/CTeX-org/ctex-kit/tree/master/gbk2uni
-   解决生成pdf书签乱码问题
+	1) gbk2uni：https://github.com/CTeX-org/ctex-kit/tree/master/gbk2uni
+	   解决生成pdf书签乱码问题
 
-2）texlive2009: http://thinfilm.ustc.edu.cn/~liangzi/software/CTeXlive/
-   完整的texlive的安装包， 包含了中文字体。 也可自己安装全部的texlive包
-
-
+	2）texlive2009: http://thinfilm.ustc.edu.cn/~liangzi/software/CTeXlive/
+       完整的texlive的安装包， 包含了中文字体。 也可自己安装全部的texlive包
 
 
-----------
+
 2. 生成PDF：
-  执行sh build.sh
+    执行sh build.sh
