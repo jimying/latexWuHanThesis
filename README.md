@@ -18,8 +18,9 @@
 
 
 ----------
-1. 测试的环境：  
-    centos7 + texlive2009 +gbk2uni  
+1. 环境：  
+    linux + texlive2009 +gbk2uni  
+    （我用centos7测试通过了）  
 
     1) gbk2uni：https://github.com/CTeX-org/ctex-kit/tree/master/gbk2uni  
         解决生成pdf书签乱码问题  
