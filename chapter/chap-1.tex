@@ -1,0 +1,246 @@
+\chapter{博士论文印制规则}
+（这一段blabla可以直接跳过……）国务院学位办文件规定：研究生学位论文撰写和编印
+必须符合国家标准局统一编制格式，并将博士学位论文提
+交北京图书馆和北京科技信息研究所收入国家级图书编
+目，以便及时向社会提供查阅，促进国内外学术交流。根
+据文件精神结合我校学位论文归档的要求，对我校博士学
+位论文印制规格作出如下规定：
+
+（重点部分到了）
+
+\textbf{论文装订格式的排列顺序:}
+
+\begin{enumerate}
+  \item 封面;
+  \item 论文英文题目（专用一页纸，上方为题目
+用宋体2号字，下方为研究生姓名宋体4号字、外文专
+业应有中文题目）
+  \item 郑重声明（格式和要求见附页一）
+  \item 学位论文使用授权书（格式和要求见附页二）
+  \item 博士生自认为的论文创新点
+  \item 中文摘要
+  \item 英文摘要
+  \item 目录
+  \item 引言
+  \item 正文
+  \item 中外文参考文献
+  \item 攻博期间发表的与学位论文相关的科研
+成果目录
+  \item 后记（也可不要此页）
+\end{enumerate}
+
+\section{有用的命令}
+\subsection{定理、例子、注等环境}
+文章中如果要采用定理、例子、注释等环境，可以在文件WHUthesis.cfg中的最后“the theorems definitions”部分中修改和添加。例如，
+\begin{verbatim} \newtheorem{them}{定理~}[chapter] \end{verbatim}
+则定义了定理环境，中括号[chapter]表示该定理按章编号。那么，在正文中定义某个“定理”环境的时候，则只需要进行如下的操作：
+\begin{verbatim}
+\begin{them}[男人不等于女人]
+这是第一个定理的例子。
+\end{them}
+\end{verbatim}
+
+通过“generate\_pdflatex.cmd”命令编译后的结果就是
+\begin{them}[男人不等于女人]
+这是第一个定理的例子。
+\end{them}
+
+如果要添加相应的证明过程，就可以使用
+\begin{verbatim}
+\begin{proof}
+男人=男+人；\\
+女人=女+人；\\
+男$\neq$女； \\
+所以：男人$\neq$女人。
+\end{proof}
+\end{verbatim}
+
+编译后的结果为：
+\begin{proof}
+男人=男+人；\\
+女人=女+人；\\
+男$\neq$女； \\
+所以：男人$\neq$女人。
+\end{proof}
+
+其他的环境和上述例子相似，这里就不重复了。
+
+\subsection{添加插图}
+如果对latex有所了解的同学，这一部分可以直接跳过。
+
+插入图片的基本格式：
+\begin{verbatim}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.5\textwidth]{logo.jpg}
+\caption{图xxx的简单解释。}
+\end{figure}
+\end{verbatim}
+效果图如下：
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.5\textwidth]{logo.jpg}
+\caption{图xxx的简单解释。}
+\end{figure}
+
+\begin{remk}
+值得一提的是，因为使用pdflatex来编译，该模板支持的图像格式包括：jpg, png, pdf，但是eps格式的图像不能被
+识别。
+\end{remk}
+
+另外一种添加插图的方法是采用Tikz宏包直接设计图片，推荐使用Qtikz工具来设计图片，然后Copy到对应的位置。
+\begin{verbatim}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{calc}
+\begin{tikzpicture}[
+parameter/.style={diamond,draw,minimum size=0.8cm,inner sep=0},
+latent/.style={circle,draw,minimum size=0.8cm},
+youtput/.style={circle,draw,minimum size=0.8cm,fill=black!30},
+neighbor/.style={circle,draw,densely dotted,minimum size=0.8cm},
+>=latex
+]
+\matrix[row sep=0.8cm,column sep=1.2cm]{
+	\node[parameter](ef) {} node [above] at(ef.north) {$e,f$};	
+& 	\node[parameter](ab) {} node [above] at(ab.north) {$a,b$};
+&	\node[parameter](cd) {} node [above] at(cd.north) {$c,d$};
+\\
+	\node[latent](pi)  {} node [right] at(pi.north east) {$\pi_i$};
+&	\node[latent](alpha) {} node [right] at(alpha.north east)  {$\alpha_i$};
+& 	\node[latent](alpha0) {} node [right] at(alpha0.north east)  {$\alpha_0$};
+\\
+&   \node[latent](wi) {} node [right] at(wi.north east) {$w_i$};
+&
+\\
+	\node[neighbor](zj) [xshift=-0.9cm] {} node [right] at(zj.north east)   
+            {$z_{\mathcal{J}(i)}$};
+	\node[latent](zi) [xshift=0.9cm] {} node [right] at(zi.north east)  
+            {$z_i$};
+	\path node[draw,rectangle,minimum height=1.7cm,minimum width=3.4cm,dashed,
+            opacity=0.4,fill=black!30] 
+            (bp) at ($(zj)!.5!(zi)$)  {};
+	\path node[anchor=north west] at (bp.north west) {BP};
+& 	\node[latent](theta) {} node [right] at(theta.north east)  {$\theta_i$};
+&	\node[youtput](y) {} node [right] at(y.north east)  {$y_j$};
+\\
+};
+
+\path[->] (ef) edge (pi)
+			(pi) edge (bp)
+			(ab) edge (alpha)
+			(alpha) edge (wi)
+            (wi) edge (theta)
+			(theta) edge (y)
+			(cd) edge (alpha0)
+			(bp) edge (theta)
+			(alpha0) edge (y);
+
+\path[draw] ($(bp.south west)+(-0.2,-0.2)$) rectangle 
+            ($(alpha.north east)+(0.8,0.6)$);
+\path node[below,anchor=north] at (theta.south) {$i=1,...,N$};
+\path node[rectangle,draw,minimum height=2.1cm,minimum width=2.4cm] at (y) {};
+\path node[anchor=north] at (y.south) {$j=1,...,M$};
+
+\end{tikzpicture}
+\end{verbatim}
+
+对应的图片如下图所示：
+\begin{figure}[!ht]
+\centering
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{calc}
+\begin{tikzpicture}[
+parameter/.style={diamond,draw,minimum size=0.8cm,inner sep=0},
+latent/.style={circle,draw,minimum size=0.8cm},
+youtput/.style={circle,draw,minimum size=0.8cm,fill=black!30},
+neighbor/.style={circle,draw,densely dotted,minimum size=0.8cm},
+>=latex
+]
+\matrix[row sep=0.8cm,column sep=1.2cm]{
+	\node[parameter](ef) {} node [above] at(ef.north) {$e,f$};	
+& 	\node[parameter](ab) {} node [above] at(ab.north) {$a,b$};
+&	\node[parameter](cd) {} node [above] at(cd.north) {$c,d$};
+\\
+	\node[latent](pi)  {} node [right] at(pi.north east) {$\pi_i$};
+&	\node[latent](alpha) {} node [right] at(alpha.north east)  {$\alpha_i$};
+& 	\node[latent](alpha0) {} node [right] at(alpha0.north east)  {$\alpha_0$};
+\\
+&   \node[latent](wi) {} node [right] at(wi.north east) {$w_i$};
+&
+\\
+	\node[neighbor](zj) [xshift=-0.9cm] {} node [right] at(zj.north east)   {$z_{\mathcal{J}(i)}$};
+	\node[latent](zi) [xshift=0.9cm] {} node [right] at(zi.north east)  {$z_i$};
+	\path node[draw,rectangle,minimum height=1.7cm,minimum width=3.4cm,dashed,opacity=0.4,fill=black!30] (bp) at ($(zj)!.5!(zi)$)  {};
+	\path node[anchor=north west] at (bp.north west) {BP};
+& 	\node[latent](theta) {} node [right] at(theta.north east)  {$\theta_i$};
+&	\node[youtput](y) {} node [right] at(y.north east)  {$y_j$};
+\\
+};
+\path[->] (ef) edge (pi)
+			(pi) edge (bp)
+			(ab) edge (alpha)
+			(alpha) edge (wi)
+            (wi) edge (theta)
+			(theta) edge (y)
+			(cd) edge (alpha0)
+			(bp) edge (theta)
+			(alpha0) edge (y);
+\path[draw] ($(bp.south west)+(-0.2,-0.2)$) rectangle ($(alpha.north east)+(0.8,0.6)$);
+\path node[below,anchor=north] at (theta.south) {$i=1,...,N$};
+\path node[rectangle,draw,minimum height=2.1cm,minimum width=2.4cm] at (y) {};
+\path node[anchor=north] at (y.south) {$j=1,...,M$};
+\end{tikzpicture}
+\caption{这是一个Tikz宏包的例子。}
+\end{figure}
+
+\subsection{如何引用参考文献}
+参考文献一般采用bib文件单独编辑，格式通常如下：
+\begin{verbatim}
+@ARTICLE{Daspremont2011,
+  author = {d'Aspremont, A. and El Ghaoui, L.},
+  title = {Testing the nullspace property using semidefinite programming},
+  journal = {Mathematical Programming},
+  year = {2011},
+  pages = {1--22},
+  owner = {Administrator},
+  publisher = {Springer},
+  timestamp = {2011.09.20}
+}
+\end{verbatim}
+将所有的参考文献按照上述格式书写后，存为bib文件（比如all.bib）。然后，通过下面的命令将该bib文件包含到文档中来。
+\begin{verbatim}
+\bibliography{bib/all.bib}
+\end{verbatim}
+\begin{remk}
+可以将所有相关的参考文献，例如所有关于Markov场问题的文献，存为markov.bib文件，而所有关于graphcut的文献则存为graphcut.bib文件，
+然后文档中如果用到相应的参考文献，我们就可以同时包含两个文件，
+\begin{verbatim}
+\bibliography{bib/graphcut.bib,bib/markov.bib}
+\end{verbatim}
+不用担心那些没有用在文档中引用的参考文献会出现在文档中，因为latex可以自动的屏蔽那些没有cite的文献，使其不显示在最后的参考文献中。
+\end{remk}
+
+参考文献的引用格式如下：
+\begin{verbatim}
+我们要在这里引用一个傻傻的文献\cite{Daspremont2011}，或者采用上标引用的格式\citep{Daspremont2011}。
+\end{verbatim}
+
+\begin{quote}
+我们要在这里引用一个傻傻的文献\cite{Daspremont2011}，或者采用上标引用的格式\citep{Daspremont2011}。
+\end{quote}
+
+\begin{remk}
+关于参考文献在文章最后的排列顺序则可以通过如下命令来设置：
+\begin{verbatim}
+如果按照在文章出现的顺序排列，则在\bibliography{bib/all.bib}命令前面加入
+\bibliographystyle{unsrt}
+如果按照作者名字的首字母顺序排列，则在\bibliography{bib/all.bib}命令前加
+\bibliographystyle{plain}
+\end{verbatim}
+本文设置为按照出现顺序排序，参考文献\cite{Baraniuk2008}和参考文献\cite{Alessandri2001}出现的顺序。
+\end{remk}
+
+\begin{remk}
+值得提醒的是，一般来说，如果修改一次参考文献，需要编译\textbf{两次}才能得到正确的结果。
+\end{remk}

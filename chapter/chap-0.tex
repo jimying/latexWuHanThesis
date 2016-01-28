@@ -1,0 +1,52 @@
+\chapter{武汉大学论文Latex模板介绍}\label{chap:intro}
+这是一个武汉大学论文的Latex模版，下面是包含的几个主要文件列表：
+\begin{table}[!ht]
+\caption{论文模版中的文件说明}\label{table:structure}
+\centering
+\begin{tabular}{|l|l|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  WHUthesis.cls & \parbox{30em}{论文的样式文件，包括封面设计、正文格式等等} \\
+  \hline
+  WHUthesis.cfg & \parbox{30em}{论文中一些基本变量的定义，例如参考文献标题、郑重声明等等} \\
+  \hline
+  build.sh & \parbox{30em}{生成pdf文档的脚本} \\
+  \hline
+\end{tabular}
+\end{table}
+
+
+\begin{remk}
+如果您自认为是一个对Latex比较在行，可以尝试着修改样式文件中的某些设置，已达到你想要的效果。如果您
+只是一位Latex新手，建议您不要随意改动cls文件和cfg文件。
+\end{remk}
+
+\begin{remk}
+建议您将所有的章节文件都放在命名为chapters的文件夹下，将论文中引用的插图放在命名为figures的文
+件夹下，参考文献放在命名为bib的文件夹下，然后一些logo图片放在命名为logo的文件夹下。
+\end{remk}
+\section{编译方法}
+这个模板是在中科院的博士论文模板的基础上修改得到的，由于作者水平有限，可能会有很多不是很优化的地方。
+
+首先，在具体介绍如何编写文档内容之前，我想简单的介绍一下本论文模板的结构和编译方法。论文模板的结构可以
+参照表~\ref{table:structure}：样式文件WHUthesis.cls定义了论文的样式（就像C语言中的H文件），
+其中包括论文的封面设计、正文的风格、字体、页眉页脚、边距、参考文献格式等等，因此如果用户想修改某些设置，
+则需要先看懂这个文件；基本变量文件
+WHUthesis.cfg则定义了论文中一些重要的变量（就像C语言中的全局变量），例如论文封面上出现的文字（“武汉大学”、
+“研究生姓名”、等等）。
+
+
+\section{封面设计}
+\begin{itemize}
+  \item 分类号设置：\begin{verbatim} \classification{} \end{verbatim}
+  \item 密级设置：\begin{verbatim} \confidential{} \end{verbatim}
+  \item UDC设置：\begin{verbatim} \UDC{} \end{verbatim}
+  \item 编号设置：\begin{verbatim} \serialnumber{} \end{verbatim}
+  \item 论文题目设置：\begin{verbatim} \title{XXXX论文} \end{verbatim}
+  \item 论文作者设置：\begin{verbatim} \author{XXX} \end{verbatim}
+  \item 论文导师姓名设置：\begin{verbatim} \advisor{XX} \advisortitle{教授} \end{verbatim}
+  \item 论文作者单位：\begin{verbatim}\institute{武汉大学电子信息学院}\end{verbatim}
+  \item 学科、专业名称：\begin{verbatim} \major{信号与信息处理} \end{verbatim}
+  \item 研究方向：\begin{verbatim} \field{信号处理} \end{verbatim}
+  \item 答辩时间：\begin{verbatim} \defenddate{\todaybig}或者自己设定\defenddate{二零一一年十二月} \end{verbatim}
+\end{itemize}

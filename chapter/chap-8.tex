@@ -1,0 +1,203 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+
+
+\chapter{UNIX}
+\label{cha:intro}
+UNIX~操作系统（UNIX），是美国AT\&T公司1971年~在PDP-11上运行的操作系统。具有多用户、
+多任务的特点，支持多种处理器架构，最早由肯·湯普遜（Kenneth Lane Thompson）、
+丹尼斯·里奇（Dennis MacAlistair Ritchie）。和~Douglas
+McIlroy~于1969年在~AT\&T~的贝尔实验室开发\footnote{摘自中文维基百科}。\par
+Linux~操作系统（Linux），是一类计算机操作系统的统称。Linux~操作系统的内核的名字也是~“Linux”。
+Linux~操作系统也是自由软件和开放源代码发展中最著名的例子。严格来讲，Linux~这个词本身只表
+示~Linux~内核，但在实际上人们已经习惯了用~Linux~来形容整个基于~Linux~内核，并且使用~GNU~
+工程各种工具和数据库的操作系统（也被称为~GNU/Linux~）。基于这些组
+件的~Linux~软件被称为~Linux~发行版。
+
+Linux内核最初只是由芬兰人林纳斯·托瓦兹（Linus
+Torvalds），在赫尔辛基大学上学时出于
+个人爱好而编写的，当时他并不满意~Minix~这个教学用的操作系统，部分因为只能在有限硬件上运行。
+最初的设想中，Linux~是一种类似~Minix~这样的一种操作系统。Linux~的第一个版本在1991年9月
+被大学~FTP server~管理员~Ari Lemmke~发布在~Internet~上，最初~Torvalds~称这个内核的名称为
+~"Freax"，意思是自由（"free"）和奇异（"freak"）的结合字，并且
+附上了~"X"~这个常用的字母，以配合所谓的~Unix-like~的系统。但是~FTP server~管理员
+嫌原来的命名~“Freax”~的名称不好听，把内核的称呼改成~“Linux”~，当时仅有10000行代码，仍必须
+运行于~Minix~操作系统之上，并且必须使用硬盘开机；随后在10月份第二个版本（0.02版）
+就发布了，同时这位芬兰赫尔辛基的大学生在~comp.os.minix~上发布一则消息\\
+
+\section{UNIX~历史}
+\label{sec:history}
+UNIX~的历史开始于1969年~ken Thompson，Dennis Ritchie~（即著名的~K\&G~，~C~语言的发明人）
+与一群人在一部~PDP-7~上进行的一些工作，后来这个系统变成了~UNIX。\par
+主要大事件：
+\begin{itemize}
+    \item V1(1971)：第一版的UNIX，以~PDP-11/20的汇编语言写成。
+        包括文件系统，~fork、roff、ed~等软件。
+    \item V4(1973)：以~C~语言从头写过，这使得~UNIX~修改容易，可以在几个月内移
+        植到新的硬件平台上。最初C语言是为~UNIX~设计的，所以~C~与~UNIX~间有紧密的关系。
+    \item V6(1975)：第一个在贝尔实验室外（尤其是大学中）广为流传的~UNIX~版本。
+        这也是~UNIX~分支的起点与广受欢迎的开始。1.xBSD （PDP-II）就是由这个版本衍生出来的。
+    \item V7(1979)：在许多UNIX玩家的心目中，这是“最后一个真正的~UNIX，”
+        这个版本包括一个完整的~K\&RC~编译器，Bourne
+        shell。V7~移植到~VAX~机器后称为~32V。
+\end{itemize}
+\section{UNIX~家谱}
+目前开发~UNIX（System V）的公司是~Unix System Laboratories
+(USL)。USL~本为~AT\&T~所有，1993年初被~Novell~收购。Novell~于1993年末将~UNIX~这个注册商标
+转让给~X/Open~组织。
+
+\label{sec:family}
+
+详细的~UNIX~编年史\url{http://www.levenez.com/unix/}。
+
+
+首先来看一个最简单的表格。表 \ref{tab:template-files} 列举了本模板主要文件及其功
+能。请大家注意三线表中各条线对应的命令。这个例子还展示了如何在表格中正确使用脚注。
+由于 \LaTeX{} 本身不支持在表格中使用 \verb|\footnote|，所以我们不得不将表格放在
+小页中，而且最好将表格的宽度设置为小页的宽度，这样脚注看起来才更美观。
+
+\subsection{复杂表格}
+\label{sec:complicatedtable}
+
+\begin{table}[!htbp]
+\centering
+\caption{这是一张奇怪的表格}\label{tab:aStrangeTable}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{学生信息}\\
+\hline
+班级& 姓名& 学号& 性别\\
+\hline
+\multirow{2}*{1 班}& Ch'en Meng& 001& Male\\
+& Sarah Brightman& 002& Female\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{center}
+\begin{tabular}{ | m{5em} | m{1cm}| m{1cm} | } 
+\hline
+cell1 dummy text dummy text dummy text& cell2 & cell3 \\ 
+\hline
+cell1 dummy text dummy text dummy text & cell5 & cell6 \\ 
+\hline
+cell7 & cell8 & cell9 \\ 
+\hline
+\end{tabular}
+\end{center}
+
+此外，表~\ref{tab:tabexamp1} 同时还演示了另外两个功能：1）通过 \textsf{tabularx} 的
+ \texttt{|X|} 扩展实现表格自动放大；2）通过命令 \verb|\backslashbox| 在表头部分
+插入反斜线。
+
+
+为了使我们的例子更接近实际情况，我会在必要的时候插入一些“无关”文字，以免太多图
+表同时出现，导致排版效果不太理想。第一个出场的当然是我的最爱：风流潇洒、骏马绝尘、
+健笔凌云的了。
+
+李白，字太白，陇西成纪人。凉武昭王暠九世孙。或曰山东人，或曰蜀人。白少有逸才，志
+气宏放，飘然有超世之心。初隐岷山，益州长史苏颋见而异之，曰：“是子天才英特，可比
+相如。”天宝初，至长安，往见贺知章。知章见其文，叹曰：“子谪仙人也。”言于明皇，
+召见金銮殿，奏颂一篇。帝赐食，亲为调羹，有诏供奉翰林。白犹与酒徒饮于市，帝坐沉香
+亭子，意有所感，欲得白为乐章，召入，而白已醉。左右以水颒面，稍解，援笔成文，婉丽
+精切。帝爱其才，数宴见。白常侍帝，醉，使高力士脱靴。力士素贵，耻之，摘其诗以激杨
+贵妃。帝欲官白，妃辄沮止。白自知不为亲近所容，恳求还山。帝赐金放还。乃浪迹江湖，
+终日沉饮。永王璘都督江陵，辟为僚佐。璘谋乱，兵败，白坐长流夜郎，会赦得还。族人阳
+冰为当涂令，白往依之。代宗立，以左拾遗召，而白已卒。文宗时，诏以白歌诗、裴旻剑舞、
+张旭草书为三绝云。集三十卷。今编诗二十五卷。
+
+
+
+\subsection{其它}
+\label{sec:tableother}
+有的同学不想让某个表格或者图片出现在索引里面，那么请使用命令 \verb|\caption*{}|，
+这个命令不会给表格编号，也就是出来的只有标题文字而没有“表~XX”，“图~XX”，否则
+索引里面序号不连续就显得不伦不类，这也是 \LaTeX{} 里星号命令默认的规则。
+
+
+
+迢迢牵牛星，皎皎河汉女。
+纤纤擢素手，札札弄机杼。
+终日不成章，泣涕零如雨。
+河汉清且浅，相去复几许。
+盈盈一水间，脉脉不得语。
+
+
+
+
+如何引用定理~\ref{the:theorem1} 呢？加上 \verb|label| 使用 \verb|ref| 即可。妾发
+初覆额，折花门前剧。郎骑竹马来，绕床弄青梅。同居长干里，两小无嫌猜。 十四为君妇，
+羞颜未尝开。低头向暗壁，千唤不一回。十五始展眉，愿同尘与灰。常存抱柱信，岂上望夫
+台。 十六君远行，瞿塘滟滪堆。五月不可触，猿声天上哀。门前迟行迹，一一生绿苔。苔深
+不能扫，落叶秋风早。八月蝴蝶来，双飞西园草。感此伤妾心，坐愁红颜老。
+
+\section{参考文献}
+\label{sec:bib}
+当然参考文献可以直接写 bibitem，虽然费点功夫，但是好控制，各种格式可以自己随意改
+写。
+
+本模板推荐使用 BIB\TeX，样式文件为
+tongjibib.bst，基本符合学校的参考文献格式（如专利
+等引用未加详细测试）。看看这个例子，关于书的\cite{tex, companion,
+ColdSources}， 还有这些\cite{Krasnogor2004e, clzs,
+zjsw}，关于杂志的\cite{ELIDRISSI94,
+  MELLINGER96, SHELL02}，硕士论文\cite{zhubajie, metamori2004}，博士论文
+\cite{shaheshang, FistSystem01}，标准文件\cite{IEEE-1363}，会议论文\cite{DPMG,kocher99}，技术报告\cite{NPB2}。中文参
+考文献\cite{cnarticle}应增加 \texttt{lang=``zh''} 字段，以便进行相应处理。另
+外，这个 bst 对中文文献\cite{cnproceed}的支持并不是十全十美，如果有不如意的地方，
+请手动修改 bbl 文件。
+
+
+
+\section{公式}
+\label{sec:equation}
+贝叶斯公式如式~(\ref{equ:chap1:bayes})，其中 $p(y|\mathbf{x})$ 为后验；
+$p(\mathbf{x})$ 为先验；分母 $p(\mathbf{x})$ 为归一化因子。
+\begin{equation}
+\label{equ:chap1:bayes}
+p(y|\mathbf{x}) = \frac{p(\mathbf{x},y)}{p(\mathbf{x})}=
+\frac{p(\mathbf{x}|y)p(y)}{p(\mathbf{x})}
+\end{equation}
+
+论文里面公式越多，\TeX{} 就越 happy。再看一个 \textsf{amsmath} 的例子：
+\newcommand{\envert}[1]{\left\lvert#1\right\rvert}
+\begin{equation}\label{detK2}
+\det\mathbf{K}(t=1,t_1,\dots,t_n)=\sum_{I\in\mathbf{n}}(-1)^{\envert{I}}
+\prod_{i\in I}t_i\prod_{j\in I}(D_j+\lambda_jt_j)\det\mathbf{A}
+^{(\lambda)}(\overline{I}|\overline{I})=0.
+\end{equation}
+
+前面定理示例部分列举了很多公式环境，可以说把常见的情况都覆盖了，大家在写公式的时
+候一定要好好看 \textsf{amsmath} 的文档，并参考模板中的用法：
+\begin{multline*}%\tag{[b]} % 这个出现在索引中的
+\int_a^b\biggl\{\int_a^b[f(x)^2g(y)^2+f(y)^2g(x)^2]
+ -2f(x)g(x)f(y)g(y)\,dx\biggr\}\,dy \\
+ =\int_a^b\biggl\{g(y)^2\int_a^bf^2+f(y)^2
+  \int_a^b g^2-2f(y)g(y)\int_a^b fg\biggr\}\,dy
+\end{multline*}
+
+其实还可以看看这个多级规划：
+\begin{equation}\label{bilevel}
+\left\{\begin{array}{l}
+\max\limits_{{\mbox{\footnotesize\boldmath $x$}}} F(x,y_1^*,y_2^*,\cdots,y_m^*)\\[0.2cm]
+\mbox{subject to:}\\[0.1cm]
+\qquad G(x)\le 0\\[0.1cm]
+\qquad(y_1^*,y_2^*,\cdots,y_m^*)\mbox{ solves problems }(i=1,2,\cdots,m)\\[0.1cm]
+\qquad\left\{\begin{array}{l}
+    \max\limits_{{\mbox{\footnotesize\boldmath $y_i$}}}f_i(x,y_1,y_2,\cdots,y_m)\\[0.2cm]
+    \mbox{subject to:}\\[0.1cm]
+    \qquad g_i(x,y_1,y_2,\cdots,y_m)\le 0.
+    \end{array}\right.
+\end{array}\right.
+\end{equation}
+这些跟规划相关的公式都来自于刘宝碇老师《不确定规划》的课件。
+
+
+默认的列表环境上下间距很大，模板将其重定义为 \textsf{paralist} 中的压缩环境，看起
+来要好一些。如果还是不满意，自己也可以调 \verb|\itemsep| 的。\textsf{paralist} 还
+可以方便的指定标签的样式。
